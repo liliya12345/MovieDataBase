@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actor Details | TMDB</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --tmdb-dark-blue: #032541;
+      --tmdb-light-blue: #01b4e4;
+      --tmdb-light-green: #90cea1;
+    }
+
+    .actor-header {
+      background: linear-gradient(to right, var(--tmdb-dark-blue), var(--tmdb-light-blue));
+      color: white;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+    }
+
+    .actor-poster {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .movie-card {
+      transition: transform 0.3s;
+      margin-bottom: 1.5rem;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .movie-poster {
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .badge-tmdb {
+      background-color: var(--tmdb-light-blue);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container py-4">
+  <div class="row actor-header align-items-center">
+    <div class="col-md-3 text-center">
+      <img id="actor-poster" src="" alt="Actor photo" class="actor-poster img-fluid mb-3 mb-md-0">
+    </div>
+    <div class="col-md-9">
+      <h1 id="actor-name"></h1>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <span class="badge bg-secondary" id="actor-gender"></span>
+        <span class="badge badge-tmdb" id="actor-popularity"></span>
+      </div>
+      <p id="actor-department" class="lead"></p>
+    </div>
+  </div>
+
+  <h2 class="mb-4">Known For</h2>
+  <div class="row" id="known-for-container">
+    <!-- Movies will be loaded here -->
+  </div>
+</div>
+<script src="js/app.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const actorData = JSON.parse(decodeURIComponent(urlParams.get('data')));
+    console.log(actorData);
+
+    // Display actor info
+    document.getElementById('actor-name').textContent = actorData.name;
+    document.getElementById('actor-gender').textContent = actorData.gender === 2 ? 'Male' : 'Female';
+    document.getElementById('actor-popularity').textContent = `Popularity: ${actorData.popularity.toFixed(1)}`;
+    document.getElementById('actor-department').textContent = `Known for: ${actorData.known_for_department}`;
+
+    const photoUrl = actorData.profile_path
+      ? `https://image.tmdb.org/t/p/w500${actorData.profile_path}`
+      : 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg';
+
+
+    if (actorData.profile_path) {
+      document.getElementById('actor-poster').src = `${photoUrl}`;
+    }
+
+    // Display known for movies
+    const container = document.getElementById('known-for-container');
+    actorData.known_for.forEach(movie => {
+      const movieCard = document.createElement('div');
+      movieCard.className = 'col-md-4';
+      movieCard.innerHTML = `
+          <div class="card movie-card h-100">
+            ${movie.poster_path ?
+        `<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top movie-poster" alt="${movie.title}">` :
+        `<div class="card-img-top movie-poster bg-light d-flex align-items-center justify-content-center">
+                <i class="fas fa-film fa-5x text-muted"></i>
+              </div>`
+      }
+            <div class="card-body">
+              <h5 class="card-title">${movie.title}</h5>
+              <p class="text-muted">${movie.release_date ? movie.release_date.substring(0, 4) : 'N/A'}</p>
+              <p class="card-text">${movie.overview.substring(0, 100)}...</p>
+              <span class="badge bg-primary">Rating: ${movie.vote_average}</span>
+            </div>
+          </div>
+        `;
+      container.appendChild(movieCard);
+    });
+  });
+</script>
+<div class="container py-4">
+  <button onclick="window.history.back()" class="btn btn-outline-primary mb-4">
+
+    <a href="main1.html" >
+      <i class="fas fa-arrow-left"></i> Back to results
+    </a>
+  </button>
+  <!-- Остальное содержимое -->
+</div>
+</body>
+</html>
