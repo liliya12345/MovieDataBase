@@ -1,0 +1,48 @@
+
+:root {
+  --tmdb-dark-blue: #032541;
+  --tmdb-light-blue: #01b4e4;
+  --tmdb-light-green: #90cea1;
+}
+
+.actor-header {
+  background: linear-gradient(to right, var(--tmdb-dark-blue), var(--tmdb-light-blue));
+  color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.actor-poster {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.movie-card {
+  transition: transform 0.3s;
+  margin-bottom: 1.5rem;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-poster {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.badge-tmdb {
+  background-color: var(--tmdb-light-blue);
+}
+
+.poster-placeholder {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+}
