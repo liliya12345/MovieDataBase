@@ -11,7 +11,7 @@ import {renderMovies} from "./modules/renderMovies.js";
 
 
 const API_KEY = '093bad0ff23dfec0ecf5204b988fe17c';
-const BASE_URL = 'https://api.themoviedb.org/3/discover/movie';
+const BASE_URL = 'https://api.themoviedb.org/3/movie/top_rated';
 const MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
 const POP_URL = 'https://api.themoviedb.org/3/movie/popular';
 const PERSON_URL = 'https://api.themoviedb.org/3/search/person';
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fetchData();
     renderTopMovies()
     await fetchPopData()
+    renderTopMovies()
 
 
     // Set up event listeners
