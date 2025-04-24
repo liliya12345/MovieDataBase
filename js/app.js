@@ -1,4 +1,11 @@
 // Configuration
+import {fetchTv} from "./modules/fetch-tv.js";
+import {fetchSearchData} from "./modules/fetchSearch.js";
+import {fetchPeople} from "./modules/fetchPeople.js";
+import {fetchPopData} from "./modules/fetchPop.js";
+import {renderTopMovies} from "./modules/renderTopMovies.js";
+import {fetchData} from "./modules/fetchData.js";
+
 const API_KEY = '093bad0ff23dfec0ecf5204b988fe17c';
 const BASE_URL = 'https://api.themoviedb.org/3/discover/movie';
 const MOVIE_URL = 'https://api.themoviedb.org/3/search/movie';
@@ -159,5 +166,5 @@ function showError(message) {
 function clearError() {
   errorElement.classList.add('d-none');
 }
-
+export {showLoading,showLoadingByPeople,POP_URL,showError,hideLoading,clearError,hideLoadingPop,showLoadingPop,hideLoadingByPeople,IMAGE_BASE_URL,DEFAULT_PARAMS,totalPages,currentPage,TV_URL,MOVIE_URL,applyFilters,currentFilters,tvContainer,moviesContainer,filteredMovies,filterSection,peopleContainer,noResultsElement,popContainer,topContainer,BASE_URL,all,PERSON_URL,}
 

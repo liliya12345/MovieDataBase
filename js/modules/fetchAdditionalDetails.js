@@ -1,3 +1,6 @@
+import {displayCast} from "../film.js";
+
+
 async function fetchAdditionalDetails(movieId) {
   try {
     const API_KEY = '093bad0ff23dfec0ecf5204b988fe17c';
@@ -26,3 +29,4 @@ async function fetchAdditionalDetails(movieId) {
     console.error('Error fetching additional details:', error);
   }
 }
+export {fetchAdditionalDetails};

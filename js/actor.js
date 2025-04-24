@@ -1,3 +1,6 @@
+import {fetchActorMovies,} from "./modules/fetch-actor.js";
+import {renderActorMovies} from "./modules/render-actor.js"
+
 const API_KEY = '093bad0ff23dfec0ecf5204b988fe17c';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -71,3 +74,4 @@ function showError(message) {
 
 // Add event listener for sort select
 document.getElementById('sort-select').addEventListener('change', renderActorMovies);
+export {actorMovies,actorId,API_KEY,IMAGE_BASE_URL,showLoading,hideLoading,showError,displayActorInfo}

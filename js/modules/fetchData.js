@@ -1,4 +1,11 @@
-async function fetchTv(page = 1) {
+import {renderMovies} from "./renderMovies.js";
+import {applyFilters, BASE_URL, clearError, DEFAULT_PARAMS, hideLoading, showError, showLoading} from "../app.js";
+
+let all;
+let totalPages ;
+let currentPage;
+
+async function fetchData(page = 1) {
   try {
     showLoading();
     clearError();
@@ -9,7 +16,7 @@ async function fetchTv(page = 1) {
       vote_count: JSON.stringify(DEFAULT_PARAMS.vote_count)
     });
 
-    const url = `${TV_URL}?${params.toString()}&query=${encodeURIComponent(currentFilters.search.toLowerCase())}`;
+    const url = `${BASE_URL}?${params.toString()}`;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -18,17 +25,16 @@ async function fetchTv(page = 1) {
 
     const data = await response.json();
 
-    tv = data.results;
-    console.log(tv);
+    all = data.results;
     totalPages = data.total_pages;
     currentPage = data.page;
     applyFilters();
-    renderTv();
+    renderMovies();
     hideLoading();
-
 
   } catch (error) {
     showError(error.message);
     hideLoading();
   }
 }
+export {fetchData,all}

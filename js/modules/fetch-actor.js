@@ -1,4 +1,11 @@
+
+import {renderActorMovies} from "./render-actor.js"
+import {actorId,  API_KEY, hideLoading, showError, showLoading} from "../actor.js";
+
+let actorMovies;
+
 async function fetchActorMovies() {
+
   try {
     showLoading();
 
@@ -11,8 +18,8 @@ async function fetchActorMovies() {
     }
 
     const data = await response.json();
-    actorMovies = data.cast || [];
-    console.log(data);
+    actorMovies = data.cast;
+    console.log(actorMovies);
 
     renderActorMovies();
     hideLoading();
@@ -23,3 +30,4 @@ async function fetchActorMovies() {
     hideLoading();
   }
 }
+export {fetchActorMovies,actorMovies}

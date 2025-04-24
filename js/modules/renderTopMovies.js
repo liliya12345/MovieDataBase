@@ -1,14 +1,14 @@
-function renderPopMovies() {
-  // popContainer.innerHTML = '';
-  popContainer.innerHTML = ''; // Очищаем контейнер
-  const popToShow = popMovie.slice(0, 12);
-  popToShow.forEach(movie => {
-    const posterUrl = movie.poster_path
+import {IMAGE_BASE_URL, topContainer} from "../app.js";
+import {all} from "./fetchData.js";
 
+function renderTopMovies() {
+  // topContainer.innerHTML = '';
+  topContainer.innerHTML = ''; // Очищаем контейнер
+  const allToShow = all.slice(0, 12);
+  allToShow.forEach(movie => {
+    const posterUrl = movie.poster_path
       ? `${IMAGE_BASE_URL}${movie.poster_path}`
       : '';
-
-    const voteAverage = movie.vote_average.toFixed(1);
 
     const card = document.createElement('div');
     card.className = 'col';
@@ -19,7 +19,7 @@ function renderPopMovies() {
       `<div class="poster-placeholder"><i class="fas fa-film fa-3x"></i></div>`
     }
                         <div class="vote-average">
-                            ${voteAverage}
+                            ${movie.vote_average}
                         </div>
                         <div class="movie-info">
                             <h5 class="movie-title" title="${movie.title}">${movie.title}</h5>
@@ -35,6 +35,7 @@ function renderPopMovies() {
     });
 
     card.style.cursor = 'pointer'; // М
-    popContainer.appendChild(card);
+    topContainer.appendChild(card);
   });
 }
+export {renderTopMovies}

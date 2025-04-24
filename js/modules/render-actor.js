@@ -1,8 +1,15 @@
+import {IMAGE_BASE_URL} from "../actor.js";
+import {actorMovies} from "./fetch-actor.js";
+
+function navigateToMovie(movie) {
+  window.location.href = `film.html?data=${encodeURIComponent(JSON.stringify(movie))}`;
+}
 function renderActorMovies() {
   const container = document.getElementById('movies-container');
   container.innerHTML = '';
 
   if (!actorMovies.length) {
+    console.log(actorMovies)
     document.getElementById('no-results').classList.remove('d-none');
     return;
   }
@@ -49,6 +56,5 @@ function formatRating(rating) {
   return rating?.toFixed(1) || 'N/A';
 }
 
-function navigateToMovie(movie) {
-  window.location.href = `film.html?data=${encodeURIComponent(JSON.stringify(movie))}`;
-}
+
+export {renderActorMovies, getReleaseYear,formatRating,navigateToMovie,sortMovies}

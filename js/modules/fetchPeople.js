@@ -1,3 +1,15 @@
+import {
+  clearError,
+  currentFilters,
+  DEFAULT_PARAMS,
+  hideLoadingByPeople,
+  PERSON_URL,
+  showError,
+  showLoadingByPeople
+} from "../app.js";
+import {renderPeople} from "./renderPeople.js";
+
+let filteredPeople;
 async function fetchPeople(page = 1) {
   try {
     showLoadingByPeople();
@@ -20,11 +32,11 @@ async function fetchPeople(page = 1) {
 
     const data = await response.json();
 
-    filteredPeople = data.results;
+   filteredPeople = data.results;
     // filteredPeople = data.cast;
     console.log(filteredPeople);
-    totalPages = data.total_pages;
-    currentPage = data.page;
+   let totalPages = data.total_pages;
+   let  currentPage = data.page;
 
     renderPeople();
     // renderPagination();
@@ -36,3 +48,4 @@ async function fetchPeople(page = 1) {
     hideLoadingByPeople();
   }
 }
+export {fetchPeople,filteredPeople}

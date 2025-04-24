@@ -1,3 +1,6 @@
+import {renderPopMovies} from "./renderPopMovies.js";
+import {clearError, DEFAULT_PARAMS, hideLoadingPop, POP_URL, showError, showLoadingPop} from "../app.js";
+let popMovie;
 async function fetchPopData(page = 1) {
   try {
     showLoadingPop();
@@ -29,3 +32,4 @@ async function fetchPopData(page = 1) {
     hideLoadingPop();
   }
 }// Fetch movie data from API
+export {fetchPopData,popMovie}

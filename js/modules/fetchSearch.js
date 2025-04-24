@@ -1,3 +1,17 @@
+import {
+  applyFilters,
+  clearError,
+  currentFilters,
+  DEFAULT_PARAMS,
+  hideLoading,
+  MOVIE_URL,
+  showError,
+  showLoading
+} from "../app.js";
+import {renderSearchMovies} from "./renderSearchMovies.js";
+
+
+let searchMovie;
 async function fetchSearchData(page = 1) {
   try {
 
@@ -28,8 +42,8 @@ async function fetchSearchData(page = 1) {
 
     searchMovie = data.results;
     console.log(searchMovie)
-    totalPages = data.total_pages;
-    currentPage = data.page;
+    // let totalPages = data.total_pages;
+    // let  currentPage = data.page;
 
 
     applyFilters();
@@ -42,3 +56,4 @@ async function fetchSearchData(page = 1) {
     hideLoading();
   }
 }
+export {fetchSearchData,searchMovie}

@@ -1,3 +1,7 @@
+import {filterSection, IMAGE_BASE_URL, noResultsElement, peopleContainer} from "../app.js";
+import {filteredPeople} from "./fetchPeople.js";
+
+
 function renderPeople() {
 
   filterSection.display = 'block';
@@ -50,3 +54,4 @@ function renderPeople() {
 
 
 }
+export {renderPeople}
