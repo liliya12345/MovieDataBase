@@ -3,6 +3,7 @@ import {filteredPeople} from "./fetchPeople.js";
 
 
 
+
 function renderPeople() {
 
   filterSection.display = 'block';
@@ -15,14 +16,18 @@ function renderPeople() {
     noResultsElement.classList.add('d-none');
     peopleContainer.classList.remove('d-none');
   }
+  const sortedPeople = sortPeople([...filteredPeople], document.getElementById('sort-select').value);
 
-  filteredPeople.forEach(person => {
+  sortedPeople.forEach(person => {
 
     const posterUrl = person.profile_path
       ? `${IMAGE_BASE_URL}${person.profile_path}`
       : 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg';
     const popularity = person.popularity.toFixed(1);
     const role = person.known_for_department;
+
+
+
 
     const card = document.createElement('div');
     card.className = 'col';
@@ -54,5 +59,14 @@ function renderPeople() {
   });
 
 
+}
+function sortPeople(filteredPeople, sortValue) {
+  const sortOptions = {
+    'popularity.desc': (a, b) => b.popularity - a.popularity,
+    'popularity.asc': (a, b) => a.popularity - b.popularity,
+    'title.asc': (a, b) => (a.name || '').localeCompare(b.name || ''),
+    'title.desc': (a, b) => (b.name || '').localeCompare(a.name || '')
+  };
+  return filteredPeople.sort(sortOptions[sortValue]);
 }
 export {renderPeople}

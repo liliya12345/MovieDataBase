@@ -59,12 +59,11 @@
       <div class="col-md-6 text-md-end">
         <div class="d-inline-block me-3">
           <span class="fw-bold">Sort by:</span>
-          <select class="form-select form-select-sm d-inline-block w-auto ms-2">
-            <option>Popularity descending</option>
-            <option>Popularity ascending</option>
-            <option>A-Z</option>
-            <option>Z-A</option>
-
+          <select id="sort-select" class="form-select form-select-sm d-inline-block w-auto ms-2">
+            <option value="popularity.desc">Popularity descending</option>
+            <option value="popularity.asc">Popularity ascending</option>
+            <option value="title.asc">A-Z</option>
+            <option value="title.desc">Z-A</option>
           </select>
         </div>
       </div>

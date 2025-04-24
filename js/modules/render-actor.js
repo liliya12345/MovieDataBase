@@ -14,7 +14,7 @@ function renderActorMovies() {
     return;
   }
 
-  // Сортировка фильмов
+
   const sortedMovies = sortMovies([...actorMovies], document.getElementById('sort-select').value);
 
   // Отрисовка фильмов
@@ -37,7 +37,7 @@ function renderActorMovies() {
   `).join('');
 }
 
-// Вспомогательные функции
+// Sorting of movies
 function sortMovies(movies, sortValue) {
   const sortOptions = {
     'popularity.desc': (a, b) => b.popularity - a.popularity,
@@ -45,7 +45,7 @@ function sortMovies(movies, sortValue) {
     'title.asc': (a, b) => (a.title || '').localeCompare(b.title || ''),
     'title.desc': (a, b) => (b.title || '').localeCompare(a.title || '')
   };
-  return movies.sort(sortOptions[sortValue] || sortOptions['popularity.desc']);
+  return movies.sort(sortOptions[sortValue]);
 }
 
 function getReleaseYear(date) {

@@ -1,10 +1,14 @@
-// Configuration
+
 import {fetchTv} from "./modules/fetch-tv.js";
 import {fetchSearchData} from "./modules/fetchSearch.js";
 import {fetchPeople} from "./modules/fetchPeople.js";
 import {fetchPopData} from "./modules/fetchPop.js";
 import {renderTopMovies} from "./modules/renderTopMovies.js";
 import {fetchData} from "./modules/fetchData.js";
+import {renderPeople} from "./modules/renderPeople.js";
+import {renderMovies} from "./modules/renderMovies.js";
+
+
 
 const API_KEY = '093bad0ff23dfec0ecf5204b988fe17c';
 const BASE_URL = 'https://api.themoviedb.org/3/discover/movie';
@@ -14,12 +18,6 @@ const PERSON_URL = 'https://api.themoviedb.org/3/search/person';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const TV_URL = 'https://api.themoviedb.org/3/search/tv';
 const DEFAULT_PARAMS = {
-  include_adult: false,
-  include_video: false,
-  language: 'en-US',
-  sort_by: 'vote_average.desc',
-  without_genres: '99,10755',
-  vote_count: {gte: 200},
   api_key: API_KEY
 };
 
@@ -27,15 +25,9 @@ const DEFAULT_PARAMS = {
 let currentPage = 1;
 let totalPages = 1;
 let all = [];
-let tv = [];
-let popMovie = [];
-let searchMovie = [];
-let filteredPeople = [];
 let filteredMovies = [];
 let currentFilters = {
-  search: '',
-  // year: '',
-  // rating: ''
+  search: ''
 };
 
 // DOM Elements
@@ -49,6 +41,7 @@ const loadingElement = document.getElementById('loading');
 const errorElement = document.getElementById('error');
 const noResultsElement = document.getElementById('no-results');
 const searchInput = document.getElementById('search-input');
+
 
 
 // Initialize the page
@@ -75,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 function applyFilters() {
 
   filteredMovies = all.filter(movie => {
+    console.log(filteredMovies)
     // Search filter
     const matchesSearch = currentFilters.search === '' ||
       movie.title.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
@@ -166,5 +160,7 @@ function showError(message) {
 function clearError() {
   errorElement.classList.add('d-none');
 }
+document.getElementById('sort-select').addEventListener('change',renderMovies);
+document.getElementById('sort-select').addEventListener('change',renderPeople);
 export {showLoading,showLoadingByPeople,POP_URL,showError,hideLoading,clearError,hideLoadingPop,showLoadingPop,hideLoadingByPeople,IMAGE_BASE_URL,DEFAULT_PARAMS,totalPages,currentPage,TV_URL,MOVIE_URL,applyFilters,currentFilters,tvContainer,moviesContainer,filteredMovies,filterSection,peopleContainer,noResultsElement,popContainer,topContainer,BASE_URL,PERSON_URL}
 

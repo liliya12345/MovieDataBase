@@ -1,11 +1,14 @@
 import {IMAGE_BASE_URL, moviesContainer} from "../app.js";
 import {filteredMovies} from "../app.js";
+import {searchMovie} from "./fetchSearch.js";
+
 
 
 function renderMovies() {
   moviesContainer.innerHTML = '';
-
-  filteredMovies.forEach(movie => {
+  const sortedMovies = sortMovie([...searchMovie], document.getElementById('sort-select').value);
+console.log(searchMovie)
+  sortedMovies.forEach(movie => {
     const posterUrl = movie.poster_path
       ? `${IMAGE_BASE_URL}${movie.poster_path}`
       : 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg';
@@ -43,5 +46,14 @@ function renderMovies() {
     card.style.cursor = 'pointer'; // М
     moviesContainer.appendChild(card);
   });
+}
+function sortMovie(searchMovie, sortValue) {
+  const sortOptions = {
+    'popularity.desc': (a, b) => b.popularity - a.popularity,
+    'popularity.asc': (a, b) => a.popularity - b.popularity,
+    'title.asc': (a, b) => (a.title || '').localeCompare(b.name || ''),
+    'title.desc': (a, b) => (b.title || '').localeCompare(a.name || '')
+  };
+  return searchMovie.sort(sortOptions[sortValue]);
 }
 export {renderMovies}

@@ -16,6 +16,9 @@ function renderSearchMovies() {
 
     const voteAverage = movie.vote_average.toFixed(1);
 
+
+
+
     const card = document.createElement('div');
     card.className = 'col';
     card.innerHTML = `

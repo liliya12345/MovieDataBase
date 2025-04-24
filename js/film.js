@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Получаем данные фильма из URL
+
 function getMovieDataFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   const movieDataStr = urlParams.get('data');
@@ -23,9 +23,9 @@ function getMovieDataFromURL() {
   return JSON.parse(decodeURIComponent(movieDataStr));
 }
 
-// Отображаем основную информацию о фильме
+// display movie info
 function displayBasicMovieInfo(movie) {
-  // Устанавливаем текст
+
   document.getElementById('movie-title').textContent = movie.title;
   document.title = `${movie.title} | Movie Details`;
   document.getElementById('movie-overview').textContent = movie.overview || 'No overview available.';
@@ -33,27 +33,27 @@ function displayBasicMovieInfo(movie) {
   document.getElementById('movie-rating').textContent = formatRating(movie.vote_average);
   document.getElementById('movie-vote-count').textContent = formatVoteCount(movie.vote_count);
 
-  // Устанавливаем изображения
+  // set poster
   setPosterImage(movie.poster_path);
   setBackdropImage(movie.backdrop_path);
 }
 
-// Получаем год релиза
+// get ReleaseYear
 function getReleaseYear(date) {
   return date ? new Date(date).getFullYear() : 'N/A';
 }
 
-// Форматируем рейтинг
+// format rating
 function formatRating(rating) {
   return rating ? rating.toFixed(1) : 'N/A';
 }
 
-// Форматируем количество голосов
+// format Vote
 function formatVoteCount(count) {
   return count ? count.toLocaleString() : '0';
 }
 
-// Устанавливаем постер фильма
+// set poster
 function setPosterImage(posterPath) {
   const posterUrl = posterPath
     ? `https://image.tmdb.org/t/p/w500${posterPath}`
@@ -61,7 +61,7 @@ function setPosterImage(posterPath) {
   document.getElementById('movie-poster').src = posterUrl;
 }
 
-// Устанавливаем фоновое изображение
+// set backdrop image
 function setBackdropImage(backdropPath) {
   if (backdropPath) {
     document.getElementById('movie-backdrop').style.backgroundImage =
@@ -69,37 +69,8 @@ function setBackdropImage(backdropPath) {
   }
 }
 
-// Обновляем детали фильма
-function updateMovieDetails(movie) {
-  document.getElementById('movie-status').textContent = movie.status || 'N/A';
-  document.getElementById('movie-budget').textContent = formatCurrency(movie.budget);
-  document.getElementById('movie-revenue').textContent = formatCurrency(movie.revenue);
-  displayProductionCompanies(movie.production_companies);
-}
 
-// Форматируем валюту
-function formatCurrency(amount) {
-  return amount ? `$${amount.toLocaleString()}` : 'N/A';
-}
-
-// Отображаем компании-производители
-function displayProductionCompanies(companies) {
-  const container = document.getElementById('movie-production');
-  container.innerHTML = '';
-
-  if (!companies || companies.length === 0) {
-    container.textContent = 'No production companies available';
-    return;
-  }
-
-  companies.forEach(company => {
-    const p = document.createElement('p');
-    p.textContent = company.name;
-    container.appendChild(p);
-  });
-}
-
-// Отображаем актерский состав
+// display actors
 function displayCast(cast) {
   const container = document.getElementById('movie-cast');
   container.innerHTML = '';
