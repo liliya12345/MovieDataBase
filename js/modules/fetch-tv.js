@@ -1,14 +1,16 @@
 
-import {
-  clearError,
-  DEFAULT_PARAMS,
-  showLoading,
-  totalPages,
-  currentPage,
-  TV_URL,
-  applyFilters, currentFilters, showError,hideLoading
-} from "../app.js";
+
 import {renderTv} from "./render-tv.js";
+import {
+  applyFilters,
+  clearError,
+  currentFilters,
+  DEFAULT_PARAMS,
+  hideLoading,
+  showError,
+  showLoading,
+  TV_URL
+} from "../app.js";
 
 let tv;
 async function fetchTv(page = 1) {
@@ -33,8 +35,8 @@ async function fetchTv(page = 1) {
 
     tv = data.results;
     console.log(tv);
-    totalPages = data.total_pages;
-    currentPage = data.page;
+    let totalPages = data.total_pages;
+    let currentPage = data.page;
     applyFilters();
     renderTv();
     hideLoading();

@@ -2,6 +2,7 @@ import {filterSection, IMAGE_BASE_URL, noResultsElement, peopleContainer} from "
 import {filteredPeople} from "./fetchPeople.js";
 
 
+
 function renderPeople() {
 
   filterSection.display = 'block';
