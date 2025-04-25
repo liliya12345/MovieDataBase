@@ -15,8 +15,7 @@ import {Movie} from "../Movie.js";
 let searchMovies = [];
 
 async function fetchSearchData(page = 1) {
-  document.getElementById('top-section').style.display = 'none';
-  document.getElementById('popular-section').style.display = 'none';
+
   searchMovies = [];
   try {
 
@@ -64,7 +63,8 @@ async function fetchSearchData(page = 1) {
          searchMovies.push(movie);
        })
 
-
+    document.getElementById('top-section').style.display = 'none';
+    document.getElementById('popular-section').style.display = 'none';
 
       applyFilters();
       moviesContainer.innerHTML = '';
