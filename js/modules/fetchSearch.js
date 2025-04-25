@@ -4,9 +4,9 @@ import {
   currentFilters,
   DEFAULT_PARAMS,
   hideLoading,
-  MOVIE_URL, moviesContainer,
+  MOVIE_URL, moviesContainer, popContainer,
   showError,
-  showLoading
+  showLoading, topContainer
 } from "../app.js";
 
 import {Movie} from "../Movie.js";
@@ -16,6 +16,7 @@ import {Movie} from "../Movie.js";
 let searchMovies = [];
 
 async function fetchSearchData(page = 1) {
+
   searchMovies = [];
   try {
 
@@ -43,6 +44,8 @@ async function fetchSearchData(page = 1) {
       moviesContainer.innerHTML = '<div>No movies found for your search.</div>';
       return;
     }
+    document.getElementById('top-section').style.display = 'none';
+    document.getElementById('popular-section').style.display = 'none';
        data.results.forEach(searchMovie => {
          const movie = new Movie();
          movie.title = searchMovie.title;
