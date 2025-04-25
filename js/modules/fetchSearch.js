@@ -15,6 +15,7 @@ import {Movie} from "../Movie.js";
 // let searchMovie;
 let searchMovies=[];
 async function fetchSearchData(page = 1) {
+  searchMovies=[];
   try {
 
     showLoading();
@@ -36,7 +37,7 @@ async function fetchSearchData(page = 1) {
     }
 
     const data = await response.json(); //Loggas först när json-promiset är resolved
-    
+
     data.results.forEach(searchMovie => {
         const movie = new Movie();
       movie.title = searchMovie.title;

@@ -90,7 +90,7 @@ function setupEventListeners() {
 
   searchInput.addEventListener('input', (e) => {
     currentFilters.search = e.target.value.trim();
-
+    moviesContainer.innerHTML = '';
     if (currentFilters.search === '') {
 
       // If the search is empty,  show movies
