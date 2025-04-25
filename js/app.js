@@ -1,7 +1,7 @@
 
 import {fetchTv} from "./modules/fetch-tv.js";
 import {fetchSearchData,searchMovies} from "./modules/fetchSearch.js";
-import {fetchPeople, filteredPeople} from "./modules/fetchPeople.js";
+import {fetchPeople} from "./modules/fetchPeople.js";
 import {fetchPopData} from "./modules/fetchPop.js";
 import {fetchData} from "./modules/fetchData.js";
 import {renderPeople} from "./modules/renderPeople.js";
