@@ -28,15 +28,15 @@ async function fetchSearchData(page = 1) {
 
 
     const url = `${MOVIE_URL}?${params.toString()}&query=${encodeURIComponent(currentFilters.search.toLowerCase())}`
-    const response = await fetch(url);
+    const response = await fetch(url); //Loggas först när fetch-promiset är resolved
+
 
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
 
-    const data = await response.json();
-
-
+    const data = await response.json(); //Loggas först när json-promiset är resolved
+    
     data.results.forEach(searchMovie => {
         const movie = new Movie();
       movie.title = searchMovie.title;

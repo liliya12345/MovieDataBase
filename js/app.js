@@ -110,9 +110,10 @@ function setupEventListeners() {
       if (filterSection.length > 0) {
         filterSection[0].style.display = 'block';
       }
-      fetchPeople(currentPage);
-      fetchSearchData(currentPage);
-      fetchTv(currentPage)
+      fetchPeople(currentPage)
+        .then(() => fetchSearchData(currentPage))
+        .then(() => fetchTv(currentPage))
+        .catch(error => showError(error.message));
     }
   });
 
@@ -164,7 +165,11 @@ document.getElementById('sort-select').addEventListener('change', (e) => {
   const sortValue = e.target.value;
 
   if (currentFilters.search !== '') {
-
+    moviesContainer.innerHTML = '';
+    tvContainer.innerHTML = '';
+    peopleContainer.innerHTML = '';
+    popContainer.innerHTML = '';
+    topContainer.innerHTML = '';
     Movie.renderMovies(searchMovies, moviesContainer, sortValue);
     renderPeople();
   }
