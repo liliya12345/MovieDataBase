@@ -8,7 +8,7 @@ En del av koden följa Objektorienterad Programmering.
 
 
 ## Användarinteraktion:
-Ett användargränssnitt där användare kan låna, lämna  tillbaka böcker.
+Ett användargränssnitt där användare man söka movies, personer, tv.
 
 ## API 
 Referenslista för hela API:et
