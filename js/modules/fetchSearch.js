@@ -4,7 +4,7 @@ import {
   currentFilters,
   DEFAULT_PARAMS,
   hideLoading,
-  MOVIE_URL, moviesContainer, popContainer,
+  MOVIE_URL, moviesContainer,
   showError,
   showLoading
 } from "../app.js";
