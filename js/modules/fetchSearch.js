@@ -12,7 +12,6 @@ import {
 import {Movie} from "../Movie.js";
 
 
-// let searchMovie;
 let searchMovies = [];
 
 async function fetchSearchData(page = 1) {
@@ -37,7 +36,6 @@ async function fetchSearchData(page = 1) {
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
     }
-
 
     const data = await response.json();
     if (data.results.length === 0) {
