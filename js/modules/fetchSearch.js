@@ -15,7 +15,8 @@ import {Movie} from "../Movie.js";
 let searchMovies = [];
 
 async function fetchSearchData(page = 1) {
-
+  document.getElementById('top-section').style.display = 'none';
+  document.getElementById('popular-section').style.display = 'none';
   searchMovies = [];
   try {
 
@@ -31,8 +32,7 @@ async function fetchSearchData(page = 1) {
 
     const url = `${MOVIE_URL}?${params.toString()}&query=${encodeURIComponent(currentFilters.search.toLowerCase())}`
     const response = await fetch(url); //Loggas först när fetch-promiset är resolved
-    document.getElementById('top-section').style.display = 'none';
-    document.getElementById('popular-section').style.display = 'none';
+
 
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
