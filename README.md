@@ -29,7 +29,7 @@ Se dina keys under
 Authentication - https://developer.themoviedb.org/reference/intro/authentication 
 settings - https://www.themoviedb.org/settings/api 
 
-Du kan autentisera dina requests på två olika sätt. 
+Man kan autentisera sina requests på två olika sätt. 
 Genom att använda din API key i url:en
 Genom att använda din Access Token i ett objekt.
 
