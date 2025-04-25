@@ -31,7 +31,8 @@ async function fetchSearchData(page = 1) {
 
     const url = `${MOVIE_URL}?${params.toString()}&query=${encodeURIComponent(currentFilters.search.toLowerCase())}`
     const response = await fetch(url); //Loggas först när fetch-promiset är resolved
-
+    document.getElementById('top-section').style.display = 'none';
+    document.getElementById('popular-section').style.display = 'none';
 
     if (!response.ok) {
       throw new Error(`API request failed with status ${response.status}`);
@@ -42,8 +43,7 @@ async function fetchSearchData(page = 1) {
       moviesContainer.innerHTML = '<div>No movies found for your search.</div>';
       return;
     }
-    document.getElementById('top-section').style.display = 'none';
-    document.getElementById('popular-section').style.display = 'none';
+
        data.results.forEach(searchMovie => {
          const movie = new Movie();
          movie.title = searchMovie.title;
