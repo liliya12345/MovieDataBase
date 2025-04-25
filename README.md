@@ -1,6 +1,6 @@
 
 # MovieDataBases✨
-##### Målet med uppgiften var att   skapa en webbsida med hjälp av The Movie DataBase där man kan se vilka filmer som är högst rankade och mest populära just nu. Man ska även kunna söka på en film eller en person för att se mer information om den. Som en väldigt förenklad version av IMdB. 
+##### Målet med uppgiften var att   skapa en webbsida med hjälp av  The Movie DataBase API där man kan se vilka filmer som är högst rankade och mest populära just nu. Man ska även kunna söka på en film eller en person för att se mer information om den. Som en väldigt förenklad version av IMdB. 
 
 
 ##### Projektet byggt i vanila  JS, bootstrap
