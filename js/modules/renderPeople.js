@@ -7,9 +7,10 @@ import {filteredPeople} from "./fetchPeople.js";
 function renderPeople() {
 
   filterSection.display = 'block';
-  peopleContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых результатов
+  peopleContainer.innerHTML = '';
 
   if (filteredPeople.length === 0) {
+    peopleContainer.innerHTML = '<div>No people found for your search.</div>';
     noResultsElement.classList.remove('d-none');
     peopleContainer.classList.add('d-none');
   } else {

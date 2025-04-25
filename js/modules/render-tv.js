@@ -4,7 +4,10 @@ import {tv} from "./fetch-tv.js";
 
 function renderTv() {
   tvContainer.innerHTML = '';
+  if (tv.length === 0) {
+    tvContainer.innerHTML = '<div>No tv found for your search.</div>';
 
+  }
   tv.forEach(tv => {
     const posterUrl = tv.poster_path
       ? `${IMAGE_BASE_URL}${tv.poster_path}`

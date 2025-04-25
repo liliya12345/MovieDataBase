@@ -31,8 +31,8 @@ async function fetchPeople(page = 1) {
     }
 
     const data = await response.json();
-
    filteredPeople = data.results;
+
     // filteredPeople = data.cast;
     console.log(filteredPeople);
    let totalPages = data.total_pages;

@@ -9,7 +9,7 @@ import {
   hideLoading,
   showError,
   showLoading,
-  TV_URL
+  TV_URL,
 } from "../app.js";
 
 let tv;
@@ -34,6 +34,7 @@ async function fetchTv(page = 1) {
     const data = await response.json();
 
     tv = data.results;
+
     console.log(tv);
     let totalPages = data.total_pages;
     let currentPage = data.page;
