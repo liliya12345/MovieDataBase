@@ -4,14 +4,16 @@ import {
   currentFilters,
   DEFAULT_PARAMS,
   hideLoading,
-  MOVIE_URL,
+  MOVIE_URL, moviesContainer, popContainer,
   showError,
   showLoading
 } from "../app.js";
-import {renderSearchMovies} from "./renderSearchMovies.js";
+
+import {Movie} from "../Movie.js";
 
 
-let searchMovie;
+// let searchMovie;
+let searchMovies=[];
 async function fetchSearchData(page = 1) {
   try {
 
@@ -24,12 +26,6 @@ async function fetchSearchData(page = 1) {
       vote_count: JSON.stringify(DEFAULT_PARAMS.vote_count)
     });
 
-    if (currentFilters.year) {
-      params.set('primary_release_year', currentFilters.year);
-    }
-    if (currentFilters.rating) {
-      params.set('vote_average.gte', currentFilters.rating);
-    }
 
     const url = `${MOVIE_URL}?${params.toString()}&query=${encodeURIComponent(currentFilters.search.toLowerCase())}`
     const response = await fetch(url);
@@ -40,15 +36,31 @@ async function fetchSearchData(page = 1) {
 
     const data = await response.json();
 
-    searchMovie = data.results;
-    console.log(searchMovie)
-    // let totalPages = data.total_pages;
-    // let  currentPage = data.page;
 
+    data.results.forEach(searchMovie => {
+        const movie = new Movie();
+      movie.title = searchMovie.title;
+      movie.id = searchMovie.id;
+      movie.adult = searchMovie.adult;
+      movie.backdrop_path = searchMovie.backdrop_path;
+      movie.genre_ids = searchMovie.genre_ids;
+      movie.original_language = searchMovie.original_language
+      movie.original_title = searchMovie.original_title
+      movie.overview = searchMovie.overview
+      movie.popularity = searchMovie.popularity
+      movie.poster_path = searchMovie.poster_path
+      movie.release_date = searchMovie.release_date
+      movie.title = searchMovie.title
+      movie.video = searchMovie.video
+      movie.vote_average = searchMovie.vote_average
+      movie.vote_count = searchMovie.vote_count
+      searchMovies.push(movie);
+      }
+    )
 
     applyFilters();
-    renderSearchMovies()
-
+    moviesContainer.innerHTML = '';
+    Movie.renderMovies(searchMovies, moviesContainer);
 
     hideLoading();
   } catch (error) {
@@ -56,4 +68,4 @@ async function fetchSearchData(page = 1) {
     hideLoading();
   }
 }
-export {fetchSearchData,searchMovie}
+export {fetchSearchData,searchMovies}

@@ -170,13 +170,13 @@
     color: var(--tmdb-light-blue);
   }
 
-  @media (max-width: 767px) {
-    .movie-card {
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
+  /*@media (max-width: 767px) {*/
+  /*  .movie-card {*/
+  /*    max-width: 300px;*/
+  /*    margin-left: auto;*/
+  /*    margin-right: auto;*/
+  /*  }*/
+  /*}*/
 
 
 

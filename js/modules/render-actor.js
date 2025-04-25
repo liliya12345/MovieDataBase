@@ -57,49 +57,6 @@ function renderActorMovies() {
 
 
 
-
-
-  // container.innerHTML = sortedMovies.map(movie =>
-  //   `
-  //
-  //   <div class="col" style="cursor:pointer" data-movie-id="${movie.id}">
-  //     <div class="movie-card h-100">
-  //       ${movie.poster_path
-  //   ? `<img src="${IMAGE_BASE_URL}${movie.poster_path}" class="card-img-top movie-poster" alt="${movie.title}" loading="lazy">`
-  //   : `<div class="card-img-top movie-poster poster-placeholder">
-  //              <i class="fas fa-film fa-5x text-muted"></i>
-  //            </div>`
-  // }
-  //       <div class="card-body">
-  //         <h5 class="card-title">${movie.title || 'Untitled'}</h5>
-  //         <p class="text-muted">${getReleaseYear(movie.release_date)}</p>
-  //         <span class="badge bg-primary">Rating: ${formatRating(movie.vote_average)}</span>
-  //       </div>
-  //     </div>
-  //   </div>
-  // `
-  //
-  // ).join('');
-  //
-  // // Обработка кликов на карточках фильмов
-  // container.addEventListener('click', (e) => {
-  //   let filmNavigate=e.target.closest('[data-movie-id]');
-  //
-  //   // window.location.href = `film.html?id=${filmNavigate}`;
-  //   window.location.href = `film.html?data=${encodeURIComponent(JSON.stringify(filmNavigate))}`;
-  //   // const movieCard = e.target.closest('[data-movie-id]');
-  //   // if (movieCard) {
-  //   //   const movieId = movieCard.dataset.movieId;
-  //   //   const movie = sortedMovies.find(m => m.id.toString() === movieId.toString());
-  //   //
-  //   //   if (movie) {
-  //   //     // Используем sessionStorage для передачи данных
-  //   //     sessionStorage.setItem('currentMovie', JSON.stringify(movie));
-  //   //     console.log(`film.html?id=${movieId}`);
-  //   //     window.location.href = `film.html?id=${movieId}`;
-  //   //   }
-  //   // }
-  // });
 }
 
 // Остальные функции остаются без изменений

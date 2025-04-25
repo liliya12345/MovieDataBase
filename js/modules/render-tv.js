@@ -34,9 +34,7 @@ function renderTv() {
                     </div>
                 `;
     card.addEventListener('click', () => {
-      // Кодируем данные актера для передачи в URL
       const filmDataStr = encodeURIComponent(JSON.stringify(tv));
-      // Переходим на страницу актера
       window.location.href = `film.html?data=${filmDataStr}`;
     });
 

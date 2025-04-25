@@ -50,7 +50,7 @@ function renderPeople() {
     card.addEventListener('click', () => {
       //js значение в json
       const actorDataStr = encodeURIComponent(JSON.stringify(person));
-      // Переходим на страницу актера
+      // redirect to actor page
       window.location.href = `actor.html?data=${actorDataStr}`;
     });
 

@@ -1,5 +1,5 @@
-import {displayCast} from "../film.js";
 
+import {Movie} from "../Movie.js";
 
 async function fetchAdditionalDetails(movieId) {
   try {
@@ -16,11 +16,9 @@ async function fetchAdditionalDetails(movieId) {
 
     const data = await response.json();
 
-    // // Update movie details with additional info
-    // updateMovieDetails(data);
     //
     // Display cast
-    displayCast(data.credits.cast);
+    Movie.displayCast(data.credits.cast);
     //
     // // Display similar movies
     // displaySimilarMovies(data.similar.results);

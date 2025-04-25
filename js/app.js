@@ -1,12 +1,11 @@
 
 import {fetchTv} from "./modules/fetch-tv.js";
-import {fetchSearchData} from "./modules/fetchSearch.js";
-import {fetchPeople} from "./modules/fetchPeople.js";
+import {fetchSearchData,searchMovies} from "./modules/fetchSearch.js";
+import {fetchPeople, filteredPeople} from "./modules/fetchPeople.js";
 import {fetchPopData} from "./modules/fetchPop.js";
-import {renderTopMovies} from "./modules/renderTopMovies.js";
 import {fetchData} from "./modules/fetchData.js";
 import {renderPeople} from "./modules/renderPeople.js";
-import {renderMovies} from "./modules/renderMovies.js";
+import {Movie} from "./Movie.js";
 
 
 
@@ -48,9 +47,8 @@ const searchInput = document.getElementById('search-input');
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await fetchData();
-    renderTopMovies()
     await fetchPopData()
-    renderTopMovies()
+
 
 
     // Set up event listeners
@@ -94,7 +92,8 @@ function setupEventListeners() {
     currentFilters.search = e.target.value.trim();
 
     if (currentFilters.search === '') {
-      // Если поиск пустой, показываем фильмы
+
+      // If the search is empty,  show movies
       popContainer.classList.remove('d-none');
       topContainer.classList.remove('d-none');
       if (filterSection.length > 0) {
@@ -103,7 +102,7 @@ function setupEventListeners() {
 
 
     } else {
-      // Если есть поисковый запрос, ищем людей
+     // If there is a search query,  search for people
       peopleContainer.classList.remove('d-none');
       moviesContainer.classList.remove('d-none');
       popContainer.classList.add('d-none');
@@ -161,7 +160,15 @@ function showError(message) {
 function clearError() {
   errorElement.classList.add('d-none');
 }
-document.getElementById('sort-select').addEventListener('change',renderMovies);
-document.getElementById('sort-select').addEventListener('change',renderPeople);
+document.getElementById('sort-select').addEventListener('change', (e) => {
+  const sortValue = e.target.value;
+
+  if (currentFilters.search !== '') {
+
+    Movie.renderMovies(searchMovies, moviesContainer, sortValue);
+    renderPeople();
+  }
+});
+// document.getElementById('sort-select').addEventListener('change',Movie.renderMovies,renderPeople);
 export {showLoading,showLoadingByPeople,POP_URL,showError,hideLoading,clearError,hideLoadingPop,showLoadingPop,hideLoadingByPeople,IMAGE_BASE_URL,DEFAULT_PARAMS,totalPages,currentPage,TV_URL,MOVIE_URL,applyFilters,currentFilters,tvContainer,moviesContainer,filteredMovies,filterSection,peopleContainer,noResultsElement,popContainer,topContainer,BASE_URL,PERSON_URL}
 
